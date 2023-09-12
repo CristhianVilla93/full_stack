@@ -1,0 +1,133 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* body{
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    align-items: center; 
+} */
+
+.contenedorlogin{
+    height: 580px;
+    display: flex;
+    padding: 5%;
+    flex-direction: column;
+    
+    border-radius: 15px;
+
+}
+
+.cuadrologin1{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cuadrologin1 > h1{
+    font-size:18px ;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    color: #333333;
+}
+
+.cuadrologin2{
+    padding: 25px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.correo{
+    position: relative;
+    
+}
+
+.correo > input {
+    width: 340px;
+    height: 48px;
+    font-size:16px ;
+    font-weight: 400;
+    font-family: 'Inter', sans-serif;
+    padding: 0px 0px 0px 35px;
+    border-radius: 10px;
+    border: 1px solid #BDBDBD;
+    color: #828282;
+}
+
+.correo > img{
+    position: absolute;
+    margin: 15px 10px 10px 10px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 20px;
+    height: 16px;
+}
+
+.contrasena{
+    position: relative;
+    
+}
+
+.contrasena > input {
+    width: 340px;
+    height: 48px;
+    font-size:16px ;
+    font-weight: 400;
+    font-family: 'Inter', sans-serif;
+    padding: 0px 0px 0px 35px;
+    border-radius: 10px;
+    border: 1px solid #BDBDBD;
+    color: #828282;
+}
+
+.contrasena > img{
+    position: absolute;
+    margin: 15px 10px 10px 10px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 20px;
+    height: 16px;
+}
+
+#submit{
+    width: 340px;
+    height: 48px;
+    background-color: #2F80ED;
+    color: #FFFFFF;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    border-radius: 10px;
+    border: none;
+}
+
+.cuadrologin3{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
+}
+
+.cuadrologin3 > p{
+    font-size:14px ;
+    font-weight: 400;
+    font-family: 'Inter', sans-serif;
+    color: #828282;
+}
+
+.cuadrologin3 > p > a{
+   text-decoration: none;
+}
+
+.iconos{
+    display: flex;
+    gap: 15px;
+}
