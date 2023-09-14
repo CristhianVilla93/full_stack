@@ -1,25 +1,25 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import "../styles/ShowAlumnos.css";
+import "../styles/ShowPersonas.css";
 
 
 const endpoint = "http://localhost:8000/api";
 
-const ShowAlumnos = () => {
-  const [alumnos, setAlumnos] = useState([]);
+const ShowPersonas = () => {
+  const [personas, setPersonas] = useState([]);
   useEffect(() => {
-    getAllAlumnos();
+    getAllPersonas();
   }, []);
 
-  const getAllAlumnos = async () => {
-    const response = await axios.get(`${endpoint}/alumnos`);
-    setAlumnos(response.data);
+  const getAllPersonas = async () => {
+    const response = await axios.get(`${endpoint}/personas`);
+    setPersonas(response.data);
   };
 
-  const deleteAlumno = async (id) => {
-    await axios.delete(`${endpoint}/alumno/${id}`);
-    getAllAlumnos();
+  const deletePersona = async (id) => {
+    await axios.delete(`${endpoint}/persona/${id}`);
+    getAllPersonas();
   };
 
   return (
@@ -32,7 +32,7 @@ const ShowAlumnos = () => {
               src="/IMG/logo3.jpg"
               alt="logo"
             />
-            <h1 class="text1">Universidad</h1>
+            <h1 class="text1">Tablas</h1>
           </div>
 
           <hr />
@@ -45,31 +45,38 @@ const ShowAlumnos = () => {
             <h1 class="text1">MENU ADMINISTRACION</h1>
             <a
               class="linkone"
-              href="/docente/dashboard"
+              href="/rol/dashboard"
             >
-              <img src="/imagen/permisos.svg" alt="" />
-              Maestros
+              <img src="/imagen/clases.svg" alt="" />
+              Roles
+            </a>
+            <a
+              class="linkone"
+              href="/usuario/dashboard"
+            >
+              <img src="/imagen/clases.svg" alt="" />
+              Usuarios
             </a>
             <a
               class="linkone"
               href="/"
             >
-              <img src="/imagen/maestros.svg" alt="" />
-              Alumnos
+              <img src="/imagen/clases.svg" alt="" />
+              Bitacoras
             </a>
             <a
               class="linkone"
-              href="/curso/dashboard"
-            >
-              <img src="/imagen/alumnos.svg" alt="" />
-              Cursos
-            </a>
-            <a
-              class="linkone"
-              href="/src/administrador/clases/connection/connection_clases.php"
+              href="/enlace/dashboard"
             >
               <img src="/imagen/clases.svg" alt="" />
-              Clases
+              Enlaces
+            </a>
+            <a
+              class="linkone"
+              href="/persona/dashboard"
+            >
+              <img src="/imagen/clases.svg" alt="" />
+              Personas
             </a>
           </div>
         </div>
@@ -109,23 +116,15 @@ const ShowAlumnos = () => {
             
             <div>
               <div classname="flex items-center content-center justify-between py-3">
-                <h2>Alumnos</h2>
+                <h2>Personas</h2>
               </div>
 
               <div>
-                <div className="h-14 flex items-center content-center justify-end gap-1">
-                  <label for="search">Search: </label>
-                  <input
-                    classname="border rounded h-10"
-                    type="text"
-                    id="search"
-                    name=""
-                  />
-                </div>
+               
                 <div classname="flex items-center content-center justify-center justify-items-center">
                   <div className="d-grid gap-2 d-md-flex justify-content-md-end">
                     <Link
-                      to="/alumno/create"
+                      to="/persona/create"
                       className="btn btn-secondary btn-lg mt-2 mb-2 text-white"
                     >
                       Create
@@ -138,35 +137,37 @@ const ShowAlumnos = () => {
                       <tr>
                         <th>Nombre</th>
                         <th>Apellido</th>
-                        <th>Email</th>
-                        <th>Password</th>
+                        <th>Estado</th>
+                        <th>Create_by</th>
+                        <th>Update_by</th>
+                        <th>Operaciones</th>
 
                       </tr>
                     </thead>
                     <tbody>
-                      {alumnos.map((alumno) => (
-                        <tr key={alumno.id}>
-                          <td>{alumno.name}</td>
-                          <td>{alumno.lastname}</td>
-                          <td>{alumno.email}</td>
-                          <td>{alumno.contrase}</td>
+                      {personas.map((persona) => (
+                        <tr key={persona.id}>
+                          <td>{persona.name}</td>
+                          <td>{persona.lastname}</td>
+                          <td>{persona.state}</td>
+                          <td>{persona.create_by}</td>
+                          <td>{persona.update_by}</td>
                           
                           <td>
                             <Link
-                              to={`/alumno/edit/${alumno.id}`}
+                              to={`/persona/edit/${persona.id}`}
                               className="btn btn-warning"
                             >
                               Edit
                             </Link>
                             <button
-                              onClick={() => deleteAlumno(alumno.id)}
+                              onClick={() => deletePersona(persona.id)}
                               className="btn btn-danger"
                             >
                               Delete
                             </button>
                           </td>
-                          <td></td>
-                          <td></td>
+
                         </tr>
                       ))}
                     </tbody>
@@ -181,4 +182,4 @@ const ShowAlumnos = () => {
   );
 };
 
-export default ShowAlumnos;
+export default ShowPersonas;

@@ -34,6 +34,16 @@ class AlumnoController extends Controller
         return $alumno;
     }
 
+    public function login(Request $request)
+    {
+        $alumnoLogin = Alumno::where('email',$request->email);
+        if ($request->contrase == $alumnoLogin->contrase)  {
+            return redirect('/dashboard');
+        } else {
+            return redirect('/login');
+        }
+    }
+
     public function update(Request $request, $id)
     {
         $alumno = Alumno::findOrFail($request->id);

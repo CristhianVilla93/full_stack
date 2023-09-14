@@ -1,26 +1,35 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import "../styles/ShowAlumnos.css";
+import "../styles/ShowEnlaces.css";
 
 
 const endpoint = "http://localhost:8000/api";
+const endpoint2 = "http://localhost:8000/api";
 
-const ShowAlumnos = () => {
-  const [alumnos, setAlumnos] = useState([]);
+const ShowEnlaces = () => {
+  const [enlaces, setEnlaces] = useState([]);
   useEffect(() => {
-    getAllAlumnos();
+    getAllEnlaces();
   }, []);
 
-  const getAllAlumnos = async () => {
-    const response = await axios.get(`${endpoint}/alumnos`);
-    setAlumnos(response.data);
+  const getAllEnlaces = async () => {
+    const response = await axios.get(`${endpoint}/enlaces`);
+    setEnlaces(response.data);
   };
 
-  const deleteAlumno = async (id) => {
-    await axios.delete(`${endpoint}/alumno/${id}`);
-    getAllAlumnos();
+  // 
+  const [paginas, setPaginas] = useState([]);
+  useEffect(() => {
+    getAllPaginas();
+  }, []);
+
+  const getAllPaginas = async () => {
+    const response = await axios.get(`${endpoint2}/paginas`);
+    setPaginas(response.data);
   };
+  // 
+
 
   return (
     <>
@@ -32,7 +41,7 @@ const ShowAlumnos = () => {
               src="/IMG/logo3.jpg"
               alt="logo"
             />
-            <h1 class="text1">Universidad</h1>
+            <h1 class="text1">Tablas</h1>
           </div>
 
           <hr />
@@ -45,31 +54,38 @@ const ShowAlumnos = () => {
             <h1 class="text1">MENU ADMINISTRACION</h1>
             <a
               class="linkone"
-              href="/docente/dashboard"
+              href="/rol/dashboard"
             >
-              <img src="/imagen/permisos.svg" alt="" />
-              Maestros
+              <img src="/imagen/clases.svg" alt="" />
+              Roles
+            </a>
+            <a
+              class="linkone"
+              href="/usuario/dashboard"
+            >
+              <img src="/imagen/clases.svg" alt="" />
+              Usuarios
             </a>
             <a
               class="linkone"
               href="/"
             >
-              <img src="/imagen/maestros.svg" alt="" />
-              Alumnos
+              <img src="/imagen/clases.svg" alt="" />
+              Bitacoras
             </a>
             <a
               class="linkone"
-              href="/curso/dashboard"
-            >
-              <img src="/imagen/alumnos.svg" alt="" />
-              Cursos
-            </a>
-            <a
-              class="linkone"
-              href="/src/administrador/clases/connection/connection_clases.php"
+              href="/enlace/dashboard"
             >
               <img src="/imagen/clases.svg" alt="" />
-              Clases
+              Enlaces
+            </a>
+            <a
+              class="linkone"
+              href="/persona/dashboard"
+            >
+              <img src="/imagen/clases.svg" alt="" />
+              Personas
             </a>
           </div>
         </div>
@@ -109,23 +125,14 @@ const ShowAlumnos = () => {
             
             <div>
               <div classname="flex items-center content-center justify-between py-3">
-                <h2>Alumnos</h2>
+                <h2>Enlaces</h2>
               </div>
 
               <div>
-                <div className="h-14 flex items-center content-center justify-end gap-1">
-                  <label for="search">Search: </label>
-                  <input
-                    classname="border rounded h-10"
-                    type="text"
-                    id="search"
-                    name=""
-                  />
-                </div>
                 <div classname="flex items-center content-center justify-center justify-items-center">
                   <div className="d-grid gap-2 d-md-flex justify-content-md-end">
                     <Link
-                      to="/alumno/create"
+                      to="/enlace/create"
                       className="btn btn-secondary btn-lg mt-2 mb-2 text-white"
                     >
                       Create
@@ -137,36 +144,41 @@ const ShowAlumnos = () => {
                     <thead className="bg-primary text-white">
                       <tr>
                         <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Email</th>
-                        <th>Password</th>
+                        <th>Link</th>
+                        <th>Tipo</th>
+                        <th>Detalle</th>
+                        <th>Creacion</th>
+                        <th>Operaciones</th>
 
                       </tr>
                     </thead>
                     <tbody>
-                      {alumnos.map((alumno) => (
-                        <tr key={alumno.id}>
-                          <td>{alumno.name}</td>
-                          <td>{alumno.lastname}</td>
-                          <td>{alumno.email}</td>
-                          <td>{alumno.contrase}</td>
+                      {enlaces.map((enlace) => (
+                        <tr key={enlace.id}>
+                          {paginas.map((pagina) => {
+                            if (pagina.id === enlace.id) {
+                              return (
+                                <React.Fragment key={pagina.id}>
+                                  <td>{pagina.name}</td>
+                                  <td>{pagina.url}</td>
+                                  <td>{pagina.tipo}</td>
+                                </React.Fragment>
+                              );
+                            }
+                          })}
+                          
+                          <td>{enlace.description}</td>
+                          <td>{enlace.created_at}</td>
                           
                           <td>
                             <Link
-                              to={`/alumno/edit/${alumno.id}`}
+                              to={`/enlace/edit/${enlace.id}`}
                               className="btn btn-warning"
                             >
                               Edit
                             </Link>
-                            <button
-                              onClick={() => deleteAlumno(alumno.id)}
-                              className="btn btn-danger"
-                            >
-                              Delete
-                            </button>
                           </td>
-                          <td></td>
-                          <td></td>
+                         
                         </tr>
                       ))}
                     </tbody>
@@ -181,4 +193,4 @@ const ShowAlumnos = () => {
   );
 };
 
-export default ShowAlumnos;
+export default ShowEnlaces;

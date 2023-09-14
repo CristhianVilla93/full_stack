@@ -1,0 +1,100 @@
+.cuadroprim{
+    display: flex;
+    height: 100vh;
+}
+
+.cuadroone{
+    display:flex ;
+    flex-direction: column;
+    background-color: rgba(53,58,64,255);
+    width: 240px;
+    padding: 16px;
+    gap: 8px;
+    color: rgba(158,164,166,255);
+    
+}
+
+.cuadroone1{
+    display: flex;
+    align-content: center;
+    align-content: center;
+    gap: 12px;
+
+}
+
+.text1{
+    font-size: 18px;
+}
+
+.cuadroone2{
+    display: flex;
+    flex-direction: column;
+    gap:12px;
+    padding: 12px;
+}
+
+.linkone{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.cuadrotwo{
+    width: 100%;
+}
+
+.ulcuadrotwo{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+}
+
+.licuadrotwo1{
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    grid-area: 12px;
+}
+
+.primerp{
+    margin-bottom: 32px;
+}
+
+.divcuadrotwo1{
+    text-align: center;
+}
+
+nav > ul{
+    height: 60px;
+    border-block-end: solid 1px;
+   
+}
+
+nav > ul > li:last-child{
+    cursor: pointer;
+    position: relative;
+}
+
+
+#cuadrodesple{
+ 
+    transform: scale(0);
+    transition: 0.4s all;
+
+
+}
+
+#cuadrodesple > ul{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+
+}
+
+#cuadrodesple.active{
+    transform: scale(1);
+}

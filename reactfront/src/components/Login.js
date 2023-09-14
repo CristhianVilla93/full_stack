@@ -15,7 +15,7 @@ const Login = () => {
         </div>
 
 
-        <form action="" method="" class="cuadrologin2">
+        <form action="/api/" method="post" class="cuadrologin2">
             <div class="correo">
                 <label for="email"></label>
                 <input type="email" id="email" placeholder="Email" name="email" />
@@ -24,7 +24,7 @@ const Login = () => {
 
             <div class="contrasena">
                 <label for="password"></label>
-                <input type="password"  id="password" placeholder="Password" name="password" />
+                <input type="password"  id="password" placeholder="Password" name="contrase" />
                 <img src="imagen/lock-fill.svg" alt="" />
            
             </div>

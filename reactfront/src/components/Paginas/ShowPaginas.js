@@ -1,25 +1,25 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import "../styles/ShowAlumnos.css";
+import "../styles/ShowPaginas.css";
 
 
 const endpoint = "http://localhost:8000/api";
 
-const ShowAlumnos = () => {
-  const [alumnos, setAlumnos] = useState([]);
+const ShowPaginas = () => {
+  const [paginas, setPaginas] = useState([]);
   useEffect(() => {
-    getAllAlumnos();
+    getAllPaginas();
   }, []);
 
-  const getAllAlumnos = async () => {
-    const response = await axios.get(`${endpoint}/alumnos`);
-    setAlumnos(response.data);
+  const getAllPaginas = async () => {
+    const response = await axios.get(`${endpoint}/paginas`);
+    setPaginas(response.data);
   };
 
-  const deleteAlumno = async (id) => {
-    await axios.delete(`${endpoint}/alumno/${id}`);
-    getAllAlumnos();
+  const deletePagina = async (id) => {
+    await axios.delete(`${endpoint}/pagina/${id}`);
+    getAllPaginas();
   };
 
   return (
@@ -66,10 +66,45 @@ const ShowAlumnos = () => {
             </a>
             <a
               class="linkone"
-              href="/src/administrador/clases/connection/connection_clases.php"
+              href="/rol/dashboard"
             >
               <img src="/imagen/clases.svg" alt="" />
-              Clases
+              Roles
+            </a>
+            <a
+              class="linkone"
+              href="/usuario/dashboard"
+            >
+              <img src="/imagen/clases.svg" alt="" />
+              Usuarios
+            </a>
+            <a
+              class="linkone"
+              href="/bitacora/dashboard"
+            >
+              <img src="/imagen/clases.svg" alt="" />
+              Bitacoras
+            </a>
+            <a
+              class="linkone"
+              href="/enlace/dashboard"
+            >
+              <img src="/imagen/clases.svg" alt="" />
+              Enlaces
+            </a>
+            <a
+              class="linkone"
+              href="/pagina/dashboard"
+            >
+              <img src="/imagen/clases.svg" alt="" />
+              Paginas
+            </a>
+            <a
+              class="linkone"
+              href="/persona/dashboard"
+            >
+              <img src="/imagen/clases.svg" alt="" />
+              Personas
             </a>
           </div>
         </div>
@@ -144,22 +179,22 @@ const ShowAlumnos = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {alumnos.map((alumno) => (
-                        <tr key={alumno.id}>
-                          <td>{alumno.name}</td>
-                          <td>{alumno.lastname}</td>
-                          <td>{alumno.email}</td>
-                          <td>{alumno.contrase}</td>
+                      {paginas.map((pagina) => (
+                        <tr key={pagina.id}>
+                          <td>{pagina.name}</td>
+                          <td>{pagina.lastname}</td>
+                          <td>{pagina.email}</td>
+                          <td>{pagina.contrase}</td>
                           
                           <td>
                             <Link
-                              to={`/alumno/edit/${alumno.id}`}
+                              to={`/pagina/edit/${pagina.id}`}
                               className="btn btn-warning"
                             >
                               Edit
                             </Link>
                             <button
-                              onClick={() => deleteAlumno(alumno.id)}
+                              onClick={() => deletePagina(pagina.id)}
                               className="btn btn-danger"
                             >
                               Delete
@@ -181,4 +216,4 @@ const ShowAlumnos = () => {
   );
 };
 
-export default ShowAlumnos;
+export default ShowPaginas;
