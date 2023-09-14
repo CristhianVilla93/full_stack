@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bitacora;
 use App\Models\Persona;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
@@ -33,6 +34,15 @@ class UsuarioController extends Controller
         $usuario->rol_id = 1;
         
         $usuario->save();
+
+        
+        $bitacora= new Bitacora();
+        $bitacora->navegador = NULL;
+        $bitacora->bitacora = 'Se ha creado un nuevo usuario ' .$usuario->usuario;
+        $bitacora->created_at = now();
+        $bitacora->save();
+
+
         return redirect("http://localhost:3000/usuario/dashboard");
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bitacora;
 use App\Models\Persona;
 use Illuminate\Http\Request;
 
@@ -23,6 +24,12 @@ class PersonaController extends Controller
         $persona->create_by = $request->create_by;
         $persona->update_by = $request->update_by;
         $persona->save();
+
+        $bitacora= new Bitacora();
+        $bitacora->navegador = NULL;
+        $bitacora->bitacora = 'Se ha creado una nueva persona ' .$persona->name;
+        $bitacora->created_at = now();
+        $bitacora->save();
     }
 
 
@@ -42,6 +49,13 @@ class PersonaController extends Controller
         $persona->update_by = $request->update_by;
 
         $persona->save();
+
+        $bitacora= new Bitacora();
+        $bitacora->navegador = NULL;
+        $bitacora->bitacora = 'Se actualizo una persona persona ' .$persona->name;
+        $bitacora->created_at = now();
+        $bitacora->save();
+
         return $persona;
     }
 
